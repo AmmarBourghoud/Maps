@@ -1,24 +1,37 @@
-import logo from '../assets/logo.svg';
-import '../styles/App.css';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import React, { useState } from 'react';
+import '../assets/styles/App.css';
+import Login from './Login';
+import Toz from './Toz';
+import { LOGIN_PATH, HOME_PATH } from '../consts/consts'; 
 
 function App() {
+  const [token, setToken] = useState('');
+
+  // if(!token) {
+  //   return (
+  //   <Router>
+  //     <Switch>
+  //         <Route exact path="/">
+  //            <Redirect to={HOME_PATH} />
+  //         </Route>
+  //       <Route exact path={HOME_PATH} name="Login page" render={() => <Login setToken={setToken} />} />
+  //       </Switch>
+  //   </Router>  
+  //   );
+  // }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <Router>
+        <Switch>
+          <Route exact path={LOGIN_PATH}>
+             <Redirect to={HOME_PATH} />
+          </Route>
+          <Route exact path={HOME_PATH} name="Home page" component={Toz} />
+        </Switch>
+      </Router>
+     </div>
   );
 }
 
