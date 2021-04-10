@@ -216,5 +216,5 @@ export default function ListTable() {
         onChangeRowsPerPage={handleChangeRowsPerPage}
       />
     </Paper>
-  );
+    );
 }

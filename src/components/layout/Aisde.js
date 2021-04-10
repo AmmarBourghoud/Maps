@@ -79,7 +79,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Aside() {
+export default function Aside({ setTest, children }) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -139,25 +139,25 @@ export default function Aside() {
         </div>
         <Divider />
         <List> 
-        <ListItem button onClick={() => history.push(`/list`)}>
+        <ListItem button onClick={() => setTest('list')}> 
             <ListItemIcon>
                 <TableChartIcon />      
             </ListItemIcon>
             <ListItemText primary="List view" />
         </ListItem>  
-         <ListItem button onClick={() => history.push(`/map`)}>
+         <ListItem button onClick={() => setTest('map')}>
             <ListItemIcon>
                 <MapIcon />      
             </ListItemIcon>
             <ListItemText primary="Map view" />
         </ListItem>  
-        <ListItem button onClick={() => history.push(`/heatmap`)}> 
+        <ListItem button onClick={() => setTest('heatmap')}> 
             <ListItemIcon>
                 <MapOutlinedIcon />      
             </ListItemIcon>
             <ListItemText primary="Heatmap view" />
         </ListItem>  
-        <ListItem button onClick={() => history.push(`/clustermap`)}>    
+        <ListItem button onClick={() => setTest('clustermap')}>    
             <ListItemIcon>
                 <MapRoundedIcon />      
             </ListItemIcon>
@@ -165,8 +165,7 @@ export default function Aside() {
         </ListItem>
         </List>
       </Drawer>
-
-      <ListTable />
+      {children}
     </div>
   );
 }
