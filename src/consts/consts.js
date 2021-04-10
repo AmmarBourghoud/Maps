@@ -10,5 +10,14 @@ export const LOGIN_PASSWORD = "admin"
 //LOGIN_PATH
 export const LOGIN_PATH = "/login";
 
-//HOME_PATH
-export const HOME_PATH = "/home";
+//LIST_PATH
+export const LIST_PATH = "/list";
+
+//MAP_PATH
+export const MAP_PATH = "/map";
+
+//CLUSTER_MAP_PATH
+export const CLUSTER_MAP_PATH = "/clustermap";
+
+//HEAT_MAP_PATH
+export const HEAT_MAP_PATH = "/heatmap";

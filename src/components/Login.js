@@ -4,7 +4,6 @@ import {Alert} from '@material-ui/lab';
 import { makeStyles } from '@material-ui/core/styles';
 import logonamR from '../assets/img/logo-namR-2021.svg';
 import { LOGIN_MAIL_ADDRESS, LOGIN_PASSWORD } from '../consts/consts';
-//import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 function Copyright() {
@@ -56,7 +55,6 @@ export default function Login({ setToken }) {
   const [mail, setMail] = useState("");
   const [password, setPassword] = useState("");
   const [isError, setIsError] = useState(false);
-  //const history = useHistory();
   
   const checkCreditentials = (e) => {
     e.preventDefault();
