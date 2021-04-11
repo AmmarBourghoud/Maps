@@ -9,6 +9,12 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 
+import * as dataActions from '../store/data/actions'
+import {useDispatch} from 'react-redux'
+//import {bindActionCreators} from 'redux'
+//import {connect} from 'react-redux';
+import axios from 'axios'
+
 const columns = [
     { id: 'name', label: 'Name', minWidth: 170 },
     { id: 'code', label: 'ISO\u00a0Code', minWidth: 100 },
@@ -162,6 +168,26 @@ export default function ListTable() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
+  const dispatch = useDispatch() 
+
+//   function getData() {
+//     dispatch(dataActions.getData());
+//     console.log("ON GET DATA FUNCTION");
+//   }
+
+  function getData() {
+        return axios
+           .get('https://data.opendatasoft.com/api/records/1.0/search/?dataset=jcdecaux_bike_data%40public&q=&lang=fr&rows=10000&facet=banking&facet=bonus&facet=status&facet=contract_name&timezone=Europe%2FBerlin')
+           .then(response => {
+             console.log(response.data.records);
+             return response
+              })
+            .catch(err => {
+                 console.log(err)
+            })
+      }
+  
+
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -172,6 +198,7 @@ export default function ListTable() {
   };
 
   return (
+    <div> 
     <Paper className={classes.tableroot}>
       <TableContainer className={classes.container}>
         <Table stickyHeader aria-label="sticky table">
@@ -216,5 +243,14 @@ export default function ListTable() {
         onChangeRowsPerPage={handleChangeRowsPerPage}
       />
     </Paper>
+    
+    {getData()}
+    </div>
     );
 }
+
+// function MapDispatchToProps(dispatch){
+//     return bindActionCreators(dataActions.getData(),dispatch); 
+// }
+
+// connect (MapDispatchToProps)(ListTable);

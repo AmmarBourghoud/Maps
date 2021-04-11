@@ -12,3 +12,6 @@ export const LOGIN_PATH = "/login";
 
 //HOME_PATH
 export const HOME_PATH = "/home";
+
+//MAP_IMAGE
+export const MAP_IMAGE = "https://i.imgur.com/MK4NUzI.png"
