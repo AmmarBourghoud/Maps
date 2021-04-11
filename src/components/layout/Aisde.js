@@ -1,8 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
-import { useHistory } from 'react-router-dom';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { ListItem, ListItemText, ListItemIcon, Paper, Drawer, AppBar, Toolbar, List, CssBaseline, Typography, Divider, IconButton } from '@material-ui/core';
+import { ListItem, ListItemText, ListItemIcon, Paper, Drawer, AppBar, Toolbar, List, CssBaseline, Divider, IconButton } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon  from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
@@ -11,7 +10,6 @@ import TableChartIcon from '@material-ui/icons/TableChart';
 import MapIcon from '@material-ui/icons/Map';
 import MapOutlinedIcon from '@material-ui/icons/MapOutlined';
 import MapRoundedIcon from '@material-ui/icons/MapRounded';
-import ListTable from '../List'
 
 const drawerWidth = 240;
 
@@ -79,11 +77,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Aside({ setTest, children }) {
+export default function Aside({ setChoice, children }) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const history = useHistory();
   
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -139,25 +136,25 @@ export default function Aside({ setTest, children }) {
         </div>
         <Divider />
         <List> 
-        <ListItem button onClick={() => setTest('list')}> 
+        <ListItem button onClick={() => setChoice('list')}> 
             <ListItemIcon>
                 <TableChartIcon />      
             </ListItemIcon>
             <ListItemText primary="List view" />
         </ListItem>  
-         <ListItem button onClick={() => setTest('map')}>
+         <ListItem button onClick={() => setChoice('map')}>
             <ListItemIcon>
                 <MapIcon />      
             </ListItemIcon>
             <ListItemText primary="Map view" />
         </ListItem>  
-        <ListItem button onClick={() => setTest('heatmap')}> 
+        <ListItem button onClick={() => setChoice('heatmap')}> 
             <ListItemIcon>
                 <MapOutlinedIcon />      
             </ListItemIcon>
             <ListItemText primary="Heatmap view" />
         </ListItem>  
-        <ListItem button onClick={() => setTest('clustermap')}>    
+        <ListItem button onClick={() => setChoice('clustermap')}>    
             <ListItemIcon>
                 <MapRoundedIcon />      
             </ListItemIcon>

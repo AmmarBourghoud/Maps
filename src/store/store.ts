@@ -1,22 +1,13 @@
-import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
+import { createStore, compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import { useSelector as reduxUseSelector, useDispatch as reduxUseDispatch} from 'react-redux'
+import { useDispatch as reduxUseDispatch} from 'react-redux'
 
 import dataReducer from './data/reducers';
-import {DispatchType,SelectorType} from './types'
+import {DispatchType} from './types'
 
-const store = createStore(
-    combineReducers({
-        data: dataReducer
-    }),
-    compose(applyMiddleware(thunk))
-  )
-  
+let store = createStore(dataReducer,compose(applyMiddleware(thunk)));
+
 export default store
-
-export function useSelector(selector: SelectorType) {
-  return reduxUseSelector(selector)
-}
 
 export function useDispatch(): DispatchType {
   return reduxUseDispatch()

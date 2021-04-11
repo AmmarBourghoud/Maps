@@ -5,19 +5,28 @@ import ListTable from '../List'
 import Map from '../Map'
 import ClusterMap from '../ClusterMap'
 import HeatMap from '../HeatMap'
+import * as dataActions from '../../store/data/actions'
+import {useDispatch, useSelector} from 'react-redux'
 
 export default function Layout() {
 
-  const [test,setTest] = useState('');
-  console.log(test)
-  const ReturnComponent = ({children}) => <div> <Aside setTest={setTest} children={children}/> <Footer /> </div>
+  const dispatch = useDispatch() 
+  const [choice,setChoice] = useState('');
+  const ReturnComponent = ({children}) => <div> <Aside setChoice={setChoice} children={children}/> <Footer /> </div>
   
+  function getData() {
+    dispatch(dataActions.getData());
+  }
+  getData();
+
+  const data = useSelector(state => state);
+  console.log("data State",data);
 
   return(
     <div>
    { (() =>   
     {
-      switch (test) {
+      switch (choice) {
         case '':  
         case 'list':
           return (<ReturnComponent >

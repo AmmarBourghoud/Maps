@@ -1,10 +1,12 @@
 import * as actions from './actions' 
+import {DataStateType} from './types'
 
 const defaultState = {
-    data: []
+    data: [],
+    loading: true
 }
 
-export default ( state:any = defaultState, action: any ) => {
+const dataReducer = ( state: DataStateType = defaultState, action: any ) => {
   switch (action.type) {
 
     case actions.FETCH_DATA:
@@ -28,3 +30,5 @@ export default ( state:any = defaultState, action: any ) => {
       } 
   }
  }; 
+
+export default dataReducer;

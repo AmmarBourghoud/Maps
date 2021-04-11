@@ -4,7 +4,7 @@ import {ThunkDispatch, ThunkAction} from 'redux-thunk'
 import {DataStateType} from './data/types'
 
 type StoreType = {
-    user: DataStateType
+    data: DataStateType
 }
 
 export type ThunkResultType<R> = ThunkAction<R, StoreType, any, Action>
