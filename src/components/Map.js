@@ -11,23 +11,11 @@ const useStyles = makeStyles((theme) => ({
 
 function Map() {
     const classes = useStyles();
-    console.log("toz");
+  
     return (
-        <footer>
-        <AppBar position="sticky" className={classes.footer} color="white">
-          <Container maxWidth="md">
-            <Toolbar>
-                <Typography variant="caption" color="textSecondary" align="left" >
-                <Link color="blue" href="https://github.com/AmmarBourghoud/namR" target="_blank">
-                     abourgho
-                </Link>{' '}
-                     {new Date().getFullYear()}
-                       {'.'}
-                </Typography>
-            </Toolbar>
-          </Container>
-        </AppBar>
-        </footer>
+        <div>
+          MAP COMPONENT
+        </div>
     )
 }
 

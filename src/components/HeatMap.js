@@ -17,7 +17,7 @@ export default function Footer() {
           <Container maxWidth="md">
             <Toolbar>
                 <Typography variant="caption" color="textSecondary" align="left" >
-                <Link color="blue" href="https://github.com/AmmarBourghoud/namR" target="_blank">
+                <Link  href="https://github.com/AmmarBourghoud/namR" target="_blank">
                      abourgho
                 </Link>{' '}
                      {new Date().getFullYear()}

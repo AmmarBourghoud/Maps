@@ -13,11 +13,11 @@ export default function Footer() {
     const classes = useStyles();
     return (
         <footer>
-        <AppBar position="sticky" className={classes.footer} color="white">
+        <AppBar position="sticky" className={classes.footer} color="transparent">
           <Container maxWidth="md">
             <Toolbar>
                 <Typography variant="caption" color="textSecondary" align="left" >
-                <Link color="blue" href="https://github.com/AmmarBourghoud/namR" target="_blank">
+                <Link color="primary" href="https://github.com/AmmarBourghoud/namR" target="_blank">
                      abourgho
                 </Link>{' '}
                      {new Date().getFullYear()}

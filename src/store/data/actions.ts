@@ -9,7 +9,6 @@ export function getData(dispatch: any) {
     return (dispatch: any) => axios
     .get(BASE_PATH + REQUEST_GET_DATA)
     .then(response => {
-      console.log(response.data);  
       dispatch(receiveData(response.data.records))
     })
     .catch(err => {
