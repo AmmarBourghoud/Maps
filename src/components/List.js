@@ -9,6 +9,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
+import { Router } from '@material-ui/icons';
 
 const columns = [
     { id: 'number', label: 'Number', minWidth: 100 },
@@ -43,7 +44,7 @@ export default function ListTable(data) {
 
   data = data.data;
   let rows = [];
-  if(data !== undefined)
+  if(data.length > 0)
   data.map( (sdata) =>
     rows.push(createData(sdata.fields.number, sdata.fields.name, sdata.fields.address, sdata.fields.position, sdata.fields.banking, sdata.fields.bonus, sdata.fields.status) ),
   )

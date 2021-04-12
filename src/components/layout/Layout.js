@@ -13,7 +13,6 @@ export default function Layout() {
   const [choice,setChoice] = useState('list');
   const ReturnComponent = ({children}) => <div> <Aside setChoice={setChoice} children={children}/> <Footer /> </div>
   
-  //store.dispatch(dataActions.getData());
   const data = useSelector(state => state.data);
   console.log(store.getState())
 
@@ -28,15 +27,15 @@ export default function Layout() {
                     </ReturnComponent>  )
         case 'map':
         return (<ReturnComponent >
-                      <Map />
+                      <Map data={data} />
                 </ReturnComponent>  )
         case 'heatmap':
           return (<ReturnComponent >
-                        <HeatMap />
+                        <HeatMap data={data} />
                   </ReturnComponent>  )
         case 'clustermap':
           return (<ReturnComponent >
-                        <ClusterMap />
+                        <ClusterMap data={data} />
                   </ReturnComponent>  )
         default:
           return null;
