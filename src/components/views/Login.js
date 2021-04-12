@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Link, Box, Typography, Container } from '@material-ui/core';
 import {Alert} from '@material-ui/lab';
 import { makeStyles } from '@material-ui/core/styles';
-import logonamR from '../assets/img/logo-namR-2021.svg';
-import { LOGIN_MAIL_ADDRESS, LOGIN_PASSWORD } from '../consts/consts';
+import logonamR from '../../assets/img/logo-namR-2021.svg';
+import { LOGIN_MAIL_ADDRESS, LOGIN_PASSWORD } from '../../consts/consts';
 import PropTypes from 'prop-types';
 
 function Copyright() {

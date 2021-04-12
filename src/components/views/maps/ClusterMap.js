@@ -1,7 +1,7 @@
-import { MAP_TOKEN } from '../consts/consts';
+import { MAP_TOKEN } from '../../../consts/consts';
 import mapboxgl from 'mapbox-gl';
-import React, { useState, useRef, useEffect } from 'react';
-import '../assets/styles/Map.css'
+import React, { useRef, useEffect } from 'react';
+import '../../../assets/styles/Map.css'
 
 function ClusterMap(data) {
     mapboxgl.accessToken = MAP_TOKEN;
@@ -121,15 +121,13 @@ function ClusterMap(data) {
       map.on('mouseleave', 'clusters', function () {
           map.getCanvas().style.cursor = '';
           });
+
       });
 
   })
 
     return (
         <div>
-            <div className="sidebar">
-                 Longitude: {153.011938} | Latitude: {-27.493963} | Zoom: {9}
-            </div>
             <div className="map-container" ref={mapContainer} />
         </div>
     )

@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import React, { useState } from 'react';
 import '../assets/styles/App.css';
-import Login from './Login';
+import Login from './views/Login';
 import Layout from './layout/Layout';
-import List from './List'
+import List from './views/List'
 import { LOGIN_PATH, HOME_PATH } from '../consts/consts'; 
 
 function App() {

@@ -7,7 +7,7 @@ import ChevronLeftIcon  from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import logoOds from '../../assets/img/ods.png';
 import TableChartIcon from '@material-ui/icons/TableChart';
-import MapIcon from '@material-ui/icons/Map';
+import RoomIcon from '@material-ui/icons/Room';
 import MapOutlinedIcon from '@material-ui/icons/MapOutlined';
 import MapRoundedIcon from '@material-ui/icons/MapRounded';
 
@@ -142,24 +142,24 @@ export default function Aside({ setChoice, children }) {
             </ListItemIcon>
             <ListItemText primary="List view" />
         </ListItem>  
-         <ListItem button onClick={() => setChoice('map')}>
-            <ListItemIcon>
-                <MapIcon />      
-            </ListItemIcon>
-            <ListItemText primary="Map view" />
-        </ListItem>  
-        <ListItem button onClick={() => setChoice('heatmap')}> 
-            <ListItemIcon>
-                <MapOutlinedIcon />      
-            </ListItemIcon>
-            <ListItemText primary="Heatmap view" />
-        </ListItem>  
         <ListItem button onClick={() => setChoice('clustermap')}>    
             <ListItemIcon>
-                <MapRoundedIcon />      
+                <MapOutlinedIcon />        
             </ListItemIcon>
             <ListItemText primary="Clustermap view" />
         </ListItem>
+         <ListItem button onClick={() => setChoice('markupsmap')}>
+            <ListItemIcon>
+                <RoomIcon />      
+            </ListItemIcon>
+            <ListItemText primary="Markupsmap view" />
+        </ListItem>  
+        <ListItem button onClick={() => setChoice('heatmap')}> 
+            <ListItemIcon>
+                 <MapRoundedIcon />
+            </ListItemIcon>
+            <ListItemText primary="Heatmap view" />
+        </ListItem>  
         </List>
       </Drawer>
       {children}
