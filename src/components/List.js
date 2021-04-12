@@ -46,7 +46,7 @@ export default function ListTable(data) {
   let rows = [];
   if(data.length > 0)
   data.map( (sdata) =>
-    rows.push(createData(sdata.fields.number, sdata.fields.name, sdata.fields.address, sdata.fields.position, sdata.fields.banking, sdata.fields.bonus, sdata.fields.status) ),
+    rows.push(createData(sdata.fields.number, sdata.fields.name, sdata.fields.address, sdata.fields.position, sdata.fields.banking, sdata.fields.bonus, sdata.fields.status, sdata.recordid) ),
   )
 
   const handleChangePage = (event, newPage) => {

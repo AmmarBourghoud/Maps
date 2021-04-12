@@ -35,8 +35,8 @@ function Map(data) {
          sdata.fields.address + "</p><p><strong> Last Update </strong><p>" + Moment(sdata.fields.last_update).format('DD/MM/YY à HH:mm') +
                    "</p>")).addTo(map);
         }
-       })  
-    
+       })         
+
     map.on('move', () => {
         setLng(map.getCenter().lng.toFixed(4));
         setLat(map.getCenter().lat.toFixed(4));

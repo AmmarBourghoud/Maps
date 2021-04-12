@@ -13,8 +13,17 @@ export default function Layout() {
   const [choice,setChoice] = useState('list');
   const ReturnComponent = ({children}) => <div> <Aside setChoice={setChoice} children={children}/> <Footer /> </div>
   
-  const data = useSelector(state => state.data);
-  console.log(store.getState())
+  useSelector(state => state.data);
+  const data = store.getState().data;
+  let geoData = [];
+       if(data.length > 0)
+       data.map( (sdata) => { // eslint-disable-line array-callback-return
+       if(sdata.geometry !== undefined) {
+        geoData.push(JSON.parse('{"type": "Feature", "geometry": {"type": "Point", "coordinates": ['+sdata.geometry.coordinates[0]+','+ sdata.geometry.coordinates[1]+']}}'));
+          }
+       }) 
+  //console.log(geoData);
+  //console.log(data)
 
   return(
     <div>
@@ -35,7 +44,7 @@ export default function Layout() {
                   </ReturnComponent>  )
         case 'clustermap':
           return (<ReturnComponent >
-                        <ClusterMap data={data} />
+                        <ClusterMap data={geoData} />
                   </ReturnComponent>  )
         default:
           return null;
