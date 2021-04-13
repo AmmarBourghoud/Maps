@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Footer from './Footer'
 import Aside from './Aisde'
-import ListTable from '../views/List'
+import ListTable from '../views/ListTable'
 import MarkupMap from '../views/maps/MarkupMap'
 import ClusterMap from '../views/maps/ClusterMap'
 import HeatMap from '../views/maps/HeatMap'

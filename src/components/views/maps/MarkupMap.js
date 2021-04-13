@@ -1,6 +1,6 @@
 import { MAP_TOKEN } from '../../../consts/consts';
 import mapboxgl from 'mapbox-gl';
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import '../../../assets/styles/Map.css'
 import Moment from 'moment';
 import store from '../../../store/store'
@@ -8,9 +8,9 @@ import store from '../../../store/store'
 function MarkupMap() {
     mapboxgl.accessToken = MAP_TOKEN;
     const mapContainer = useRef();
-    const [lng, setLng] = useState(153.011938);
-    const [lat, setLat] = useState(-27.493963);
-    const [zoom, setZoom] = useState(9);
+    // const [lng, setLng] = useState(153.011938);
+    // const [lat, setLat] = useState(-27.493963);
+    // const [zoom, setZoom] = useState(9);
     const dataToDisplay = store.getState().data;
     const result = []
     for(let i=0; i< 2500;i++){
@@ -21,8 +21,8 @@ function MarkupMap() {
       const map = new mapboxgl.Map({
       container: mapContainer.current,
       style: 'mapbox://styles/mapbox/streets-v11?optimize=true',
-      center: [lng, lat],
-      zoom: zoom,
+      center: [153.011938, -27.493963],
+      zoom: 9,
       maxZoom: 12,
       minZoom: 1,
       tolerance: 3.5,
@@ -52,7 +52,7 @@ function MarkupMap() {
     return (
         <div>
             <div className="sidebar">
-                 Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
+                 Longitude: {153.011938} | Latitude: {-27.493963} | Zoom: {9}
             </div>
             <div className="map-container" ref={mapContainer} />
         </div>
