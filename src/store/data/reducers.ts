@@ -7,6 +7,9 @@ const defaultState = {
     loading: true
 }
 
+/** 
+  * Updates the state when gets trigged by actions * 
+**/
 const dataReducer = ( state: DataStateType = defaultState, action: any ) => {
   switch (action.type) {
 

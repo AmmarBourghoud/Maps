@@ -8,8 +8,14 @@ import routes from '../routing/routes';
 import SingleData from './views/SingleData'
 
 function App() {
+  /** State: token
+   * Used to verify if user is logged in *
+  **/
   const [token, setToken] = useState('');
 
+  /** 
+   * If not logged redirects to Login Page *
+  **/
   if(!token) {
     return (
     <Router>
@@ -23,6 +29,10 @@ function App() {
     );
   }
 
+  /** 
+   * If logged redirects to Home page *
+   * Defines Routes and components that should be rendred on them *
+  **/
   return (
     <div className="App">
       <Router>

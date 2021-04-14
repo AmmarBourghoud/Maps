@@ -49,6 +49,13 @@ const useStyles = makeStyles((theme) => ({
  },
 }));
 
+/** 
+    * Login component gets the token state's methode from parent component * 
+    * Has three local states : *
+    * mail : to check the mail through checkCreditentials function *
+    * password : to check the password through checkCreditentials function *
+    * isError : to alert the user through showAlert function *
+**/ 
 export default function Login({ setToken }) {
   const classes = useStyles();
   
@@ -56,6 +63,10 @@ export default function Login({ setToken }) {
   const [password, setPassword] = useState("");
   const [isError, setIsError] = useState(false);
   
+  /** 
+    * checkCreditentials function * 
+    * Check the mail/password entred by user to either updates the token's state or show alert *
+  **/   
   const checkCreditentials = (e) => {
     e.preventDefault();
     const token = {
@@ -67,6 +78,10 @@ export default function Login({ setToken }) {
         setIsError(true)
   }
 
+  /** 
+    * showAlert function * 
+    * Show an alert on wrong user entries *
+  **/ 
   function showAlert() { 
     return( 
       <div className={classes.alert}>
@@ -77,52 +92,55 @@ export default function Login({ setToken }) {
     );
   }
 
+  /** 
+    * Returns the form and calls the right functions to update states * 
+  **/ 
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
-      <div className={classes.paper}>
-      { isError && showAlert() }
-        <Avatar className={classes.avatar} alt="namR logo" src={logonamR} />
-        <form className={classes.form} noValidate onSubmit={checkCreditentials}>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email Address : admin@admin.com"
-            name="email"
-            autoComplete="email" 
-            autoFocus
-            value={mail}
-            onChange={(e) => setMail(e.target.value)}
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password : admin"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
+        <div className={classes.paper}>
+          { isError && showAlert() }
+          <Avatar className={classes.avatar} alt="namR logo" src={logonamR} />
+          <form className={classes.form} noValidate onSubmit={checkCreditentials}>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email Address : admin@admin.com"
+              name="email"
+              autoComplete="email" 
+              autoFocus
+              value={mail}
+              onChange={(e) => setMail(e.target.value)}
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password : admin"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <FormControlLabel
+              control={<Checkbox value="remember" color="primary" />}
+              label="Remember me"
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+            >
             Se connecter
-          </Button>
+           </Button>
         </form>
       </div>
       <Box mt={8}>

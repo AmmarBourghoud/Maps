@@ -5,14 +5,22 @@ import '../../../assets/styles/Map.css'
 import Moment from 'moment';
 import store from '../../../store/store'
 
+/** 
+  * MarkupMap component * 
+  * Creates a map and populates it with Markups *
+  * Gets the display and creation information through store *
+**/  
 function MarkupMap() {
     mapboxgl.accessToken = MAP_TOKEN;
     const mapContainer = useRef();
+
     // const [lng, setLng] = useState(153.011938);
     // const [lat, setLat] = useState(-27.493963);
     // const [zoom, setZoom] = useState(9);
+
     const dataToDisplay = store.getState().data;
     const result = []
+    //Limited to 2500 to save performance speed
     for(let i=0; i< 2500;i++){
       result.push(dataToDisplay[i]);
     }

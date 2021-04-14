@@ -2,16 +2,18 @@ import { MAP_TOKEN } from '../../../consts/consts';
 import mapboxgl from 'mapbox-gl';
 import React, { useRef, useEffect } from 'react';
 import '../../../assets/styles/Map.css'
-//import Moment from 'moment';
 
-function HeatMap(data) {
-    mapboxgl.accessToken = MAP_TOKEN;
-    const mapContainer = useRef();
-    data = data.data;
-    console.log('data from heatmap', data)
-
+/** 
+  * HeatMap component takes geo data from parent's component as prop and adds it as source * 
+  * Adds layers to display heats and circles *
+**/
+function HeatMap(geoData) {
+  mapboxgl.accessToken = MAP_TOKEN;
+  const mapContainer = useRef();
+  geoData = geoData.data;
+  
   useEffect(() => {
-      const map = new mapboxgl.Map({
+    const map = new mapboxgl.Map({
       container: mapContainer.current,
       style: 'mapbox://styles/mapbox/dark-v10?optimize=true',
       center: [153.011938, -27.493963],
@@ -20,17 +22,14 @@ function HeatMap(data) {
       minZoom: 1,
       tolerance: 3.5,
       buffer: 0,
-
-      });
+    });
    
-  map.on('load', function () {
-      // Add a geojson point source.
-      // Heatmap layers also work with a vector tile source.
+    map.on('load', function () {
       map.addSource('velo', {
         'type': 'geojson',
         'data': {
           "type": "FeatureCollection",
-          "features": data
+          "features": geoData
           }
       });
          

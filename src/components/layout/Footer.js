@@ -9,6 +9,9 @@ const useStyles = makeStyles((theme) => ({
     }, 
   }));
 
+/** 
+  * Footer component *
+**/
 export default function Footer() {
     const classes = useStyles();
     return (

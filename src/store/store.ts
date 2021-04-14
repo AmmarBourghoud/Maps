@@ -6,6 +6,10 @@ import dataReducer from './data/reducers';
 import {DispatchType} from './types'
 import * as dataActions from './data/actions' 
 
+/** 
+  * Creates the store with the reducer * 
+  * Dispatches the getData action by default  *
+**/
 let store = createStore(dataReducer,compose(applyMiddleware(thunk)));
 
 store.dispatch(dataActions.getData(store.dispatch));

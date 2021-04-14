@@ -46,106 +46,124 @@ const useStyles = makeStyles({
 
 export default function SingleData() {
 
-const classes = useStyles();
-const dispatch = useDispatch()
-let { id } = useParams();
-mapboxgl.accessToken = MAP_TOKEN;
-const mapContainer = useRef();
-let singleData = useSelector(state => state.singleData);
-console.log(singleData);
-let coordinates = []
-if(singleData.length > 0) {
-    coordinates.push(singleData[0].geometry.coordinates[0]);
-    coordinates.push(singleData[0].geometry.coordinates[1]);
-    console.log(coordinates)
-}
+  const classes = useStyles();
+  const dispatch = useDispatch()
 
-useEffect(() => {
+  /** 
+    * Gets the id of data to retrieve through params * 
+    * Initialize map configuration *
+    * Gets the data object from the store's state and saves the coordinates of the data *
+  **/
+  let { id } = useParams();
+  mapboxgl.accessToken = MAP_TOKEN;
+  const mapContainer = useRef();
+  let singleData = useSelector(state => state.singleData);
+  let coordinates = []
+  if(singleData.length > 0) {
+      coordinates.push(singleData[0].geometry.coordinates[0]);
+      coordinates.push(singleData[0].geometry.coordinates[1]);
+  }
+
+  /** 
+    * Hook Effect to dispatch the action through the store with the data's id * 
+  **/
+  useEffect(() => {
     dispatch(getSingleData(store.dispatch,id)); 
     }, []) // eslint-disable-line react-hooks/exhaustive-deps
   
-useEffect(() => {
-    let c = [-1.5675018425,47.225470627]
-    const map = new mapboxgl.Map({
-    container: mapContainer.current,
-    style: 'mapbox://styles/mapbox/streets-v11?optimize=true',
-    center: [c[0], c[1]],
-    zoom: 10,
-    maxZoom: 12,
-    minZoom: 9,
-    tolerance: 3.5,
-    buffer: 0,
-
-    });
-    if(coordinates.length > 0) {
-     map.setCenter([coordinates[0],coordinates[1]]);
+  /** 
+    * Hook Effect to create the map and the Marker * 
+    * Uses the store's data return as dependency to updates the map coordinates *
+  **/  
+  useEffect(() => {
+      let coordinate = [-1.5675018425,47.225470627]
+      const map = new mapboxgl.Map({
+        container: mapContainer.current,
+        style: 'mapbox://styles/mapbox/streets-v11?optimize=true',
+        center: [coordinate[0], coordinate[1]],
+        zoom: 10,
+        maxZoom: 12,
+        minZoom: 9,
+        tolerance: 3.5,
+        buffer: 0,
+      });
+      if(coordinates.length > 0) {
+        map.setCenter([coordinates[0],coordinates[1]]);
+    
+      new mapboxgl.Marker().setLngLat([coordinates[0],coordinates[1]]).addTo(map);
+      }
+    
+      return () => map.remove();
+    }, [singleData]); // eslint-disable-line react-hooks/exhaustive-deps
   
-     new mapboxgl.Marker().setLngLat([coordinates[0],coordinates[1]]).addTo(map);
-    }
-  
-    return () => map.remove();
-  }, [singleData]); // eslint-disable-line react-hooks/exhaustive-deps
-
-const columns = [
-    { field: 'number', headerName: 'Number', width: 110 },
-    { field: 'name', headerName: 'Name', width: 350 },
-    { field: 'address', headerName: 'Address', width: 350 },
-    { field: 'position', headerName: 'Position', width: 270 },
-    { field: 'banking', headerName: 'Banking', width: 110 },
-    { field: 'bonus', headerName: 'Bonus', width: 100 },
-    { field: 'status', headerName: 'Status', width: 100 },
-    { field: 'available_bike_stands', headerName: 'Available Bike Stands', width: 100 },
-    { field: 'available_bikes', headerName: 'Available Bikes', width: 100 },
-    { field: 'last_update', headerName: 'Last Update', width: 100 },
-    { field: 'bike_stands', headerName: 'Bike Stands', width: 100 },
-    { field: 'contract_name', headerName: 'Contract Name', width: 100 },
+    
+  /** 
+    * Create columns logic * 
+    * Create data for table's populate logic *
+    * Create rows and populates them with data from store *
+  **/  
+  const columns = [
+      { field: 'number', headerName: 'Number', width: 110 },
+      { field: 'name', headerName: 'Name', width: 350 },
+      { field: 'address', headerName: 'Address', width: 350 },
+      { field: 'position', headerName: 'Position', width: 270 },
+      { field: 'banking', headerName: 'Banking', width: 110 },
+      { field: 'bonus', headerName: 'Bonus', width: 100 },
+      { field: 'status', headerName: 'Status', width: 100 },
+      { field: 'available_bike_stands', headerName: 'Available Bike Stands', width: 100 },
+      { field: 'available_bikes', headerName: 'Available Bikes', width: 100 },
+      { field: 'last_update', headerName: 'Last Update', width: 100 },
+      { field: 'bike_stands', headerName: 'Bike Stands', width: 100 },
+      { field: 'contract_name', headerName: 'Contract Name', width: 100 },
   ];
-  
+    
   function createData(id, number, name, address, position, banking, bonus, status, available_bike_stands, available_bikes, last_update, bike_stands, contract_name) {
     return { id, number, name, address, position, banking, bonus, status, available_bike_stands, available_bikes, last_update, bike_stands, contract_name };
   }
-  
-    let rows = [];
-    if(singleData.length > 0)
+    
+  let rows = [];
+  if(singleData.length > 0)
     singleData.map( (sdata) =>
       rows.push(createData(sdata.recordid, sdata.fields.number, sdata.fields.name, sdata.fields.address, sdata.fields.position, sdata.fields.banking, sdata.fields.bonus, sdata.fields.status, sdata.fields.available_bike_stands, sdata.fields.available_bikes, sdata.fields.last_update, sdata.fields.bike_stands, sdata.fields.contract_name) ),
-    )
+  )
 
-    const CardData = () => {
-        return (
-            <Card className={classes.root}>
-              <CardHeader title="Data Details" className={classes.header}>
-              </CardHeader>
-                <CardContent>
-                {rows.map((row,index) => {   
-                 return (    
-                    <div key={index}>  
-                 {columns.map((column) => {
-                    const value = row[column.field];
-                    return (
-                        <div style={{marginBottom: '4%'}} key={column.field}>
-                        <Typography className={classes.fields} key={column.headerName}>
-                                {column.headerName}
-                        </Typography>
-                        <Typography className={classes.value} color="textSecondary" key={value}>
-                                    {value}
-                        </Typography>    
-                        </div>
-                    );
-                  })} 
-                   </div>
-                 );   
-                })}
-               </CardContent>
-            </Card>
-          );
-        }
+  /** 
+    * Card data component * 
+    * Create Card component and populates it with data
+  **/ 
+  const CardData = () => {
+    return (
+      <Card className={classes.root}>
+        <CardHeader title="Data Details" className={classes.header}>
+        </CardHeader>
+        <CardContent>
+          {rows.map((row,index) => {   
+            return (    
+              <div key={index}>  
+                {columns.map((column) => {
+                  const value = row[column.field];
+                  return (
+                    <div style={{marginBottom: '4%'}} key={column.field}>
+                      <Typography className={classes.fields} key={column.headerName}>
+                        {column.headerName}
+                      </Typography>
+                      <Typography className={classes.value} color="textSecondary" key={value}>
+                        {value}
+                      </Typography>    
+                    </div>
+                  );
+                })} 
+              </div>
+            );   
+          })}
+        </CardContent>
+      </Card>
+    );
+  }
 
-return (
+  return (
     <div>
-   <CardData />
-         
-         <div className="singleData-map-container" ref={mapContainer} />
-         </div>
-  );
+      <CardData />
+      <div className="singleData-map-container" ref={mapContainer} /> </div>
+    );
 }

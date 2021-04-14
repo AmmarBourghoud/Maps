@@ -1,10 +1,14 @@
 import {BASE_PATH, REQUEST_GET_DATA, REQUEST_GET_SINGLE_DATA} from '../../api/paths/paths'
 import axios from 'axios'
 
-// const for data
+//Consts for data
 export const RECEIVE_DATA = 'RECEIVE_DATA';
 export const RECEIVE_SINGLE_DATA = 'RECEIVE_SINGLE_DATA'
 
+/** 
+  * Calls the API get function to get data * 
+  * Dispatches the server's result to receiveData function  *
+**/
 export function getData(dispatch: any) {
     return (dispatch: any) => axios
     .get(BASE_PATH + REQUEST_GET_DATA)
@@ -24,6 +28,10 @@ export function receiveData(json: any) {
     }
 }
 
+/** 
+  * Calls the API get function to get single data * 
+  * Dispatches the server's result to receiveSingleData function  *
+**/
 export function getSingleData(dispatch: any, id: any) {
   return (dispatch: any) => axios
   .get(BASE_PATH + REQUEST_GET_SINGLE_DATA(id))

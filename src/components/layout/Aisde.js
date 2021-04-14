@@ -11,6 +11,9 @@ import RoomIcon from '@material-ui/icons/Room';
 import MapOutlinedIcon from '@material-ui/icons/MapOutlined';
 import MapRoundedIcon from '@material-ui/icons/MapRounded';
 
+/** 
+  * Styles for the Aside Component *
+**/
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -77,6 +80,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+/** 
+  * Aside Component takes the setChoice function to switch views and the child Component to be rendred *
+**/
 export default function Aside({ setChoice, children }) {
   const classes = useStyles();
   const theme = useTheme();
@@ -129,13 +135,19 @@ export default function Aside({ setChoice, children }) {
           }),
         }}
       >
-        <div className={classes.toolbar}>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-          </IconButton>
-        </div>
-        <Divider />
-        <List> 
+      <div className={classes.toolbar}>
+        <IconButton onClick={handleDrawerClose}>
+          {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+        </IconButton>
+      </div>
+      <Divider />
+
+      {/** 
+        * ListItem to choose the view *
+        * Updates the choice by updating the prop's state using setChoice function *
+        * Renders the children component passed by props depending on choice *
+      **/}
+      <List> 
         <ListItem button onClick={() => setChoice('list')}> 
             <ListItemIcon>
                 <TableChartIcon />      
@@ -160,7 +172,7 @@ export default function Aside({ setChoice, children }) {
             </ListItemIcon>
             <ListItemText primary="Heatmap view" />
         </ListItem>  
-        </List>
+      </List>
       </Drawer>
       {children}
     </div>

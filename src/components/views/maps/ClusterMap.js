@@ -3,12 +3,16 @@ import mapboxgl from 'mapbox-gl';
 import React, { useRef, useEffect } from 'react';
 import '../../../assets/styles/Map.css'
 
-function ClusterMap(data) {
-    mapboxgl.accessToken = MAP_TOKEN;
-    const mapContainer = useRef();
-    data = data.data;
-    console.log('data from cluster map', data)
-
+/** 
+  * ClusterMap component takes geo data from parent's component as prop and adds it as source * 
+  * Adds layers to display clusters and user's clicks interaction *
+**/
+function ClusterMap(geoData) {
+  
+  mapboxgl.accessToken = MAP_TOKEN;
+  const mapContainer = useRef();
+  geoData = geoData.data;
+    
   useEffect(() => {
       const map = new mapboxgl.Map({
       container: mapContainer.current,
@@ -22,21 +26,17 @@ function ClusterMap(data) {
       });
     
     map.on('load', function () {
-          // Add a new source from our GeoJSON data and
-          // set the 'cluster' option to true. GL-JS will
-          // add the point_count property to your source data.
-          map.addSource('velos', {
+          // set the 'cluster' option to true. GL-JS will add the point_count property to source data.
+      map.addSource('velos', {
           'type': 'geojson',
-          // Point to GeoJSON data. This example visualizes all M1.0+ earthquakes
-          // from 12/22/15 to 1/21/16 as logged by USGS' Earthquake hazards program.
           'data': {
             "type": "FeatureCollection",
-            "features": data
+            "features": geoData
             },
           'cluster': true,
-          'clusterMaxZoom': 12, // Max zoom to cluster points on
-          'clusterRadius': 50 // Radius of each cluster when clustering points (defaults to 50)
-      });
+          'clusterMaxZoom': 12, 
+          'clusterRadius': 50 
+       });
        
       map.addLayer({
             id: 'clusters',
@@ -44,11 +44,6 @@ function ClusterMap(data) {
             source: 'velos',
             filter: ['has', 'point_count'],
             paint: {
-            // Use step expressions (https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions-step)
-            // with three steps to implement three types of circles:
-            //   * Blue, 20px circles when point count is less than 100
-            //   * Yellow, 30px circles when point count is between 100 and 750
-            //   * Pink, 40px circles when point count is greater than or equal to 750
             'circle-color': [
             'step',
             ['get', 'point_count'],

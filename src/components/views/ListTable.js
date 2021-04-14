@@ -21,33 +21,38 @@ const useStyles = makeStyles((theme) => ({
    },
 }));
 
+/** 
+  * ListTable component takes data as prop from parent's component * 
+  * Creates a DataGrid table with the data received *
+  * Includes a single data details Link through user's click *
+**/  
 export default function ListTable(data) {
   const classes = useStyles();
   let history = useHistory();
 
- const columns = [
-  { field: 'id', hide: true },
-  { field: 'number', headerName: 'Number', width: 110, renderCell: (params) => (
-    <div>
-      <Typography><Link color="primary" onClick={() => history.push(routes[0].path.replace(':id',params.id))} >{params.row.number}</Link></Typography>
-    </div>
-  ), },
-  { field: 'name', headerName: 'Name', width: 350 },
-  { field: 'address', headerName: 'Address', width: 350 },
-  { field: 'position', headerName: 'Position', width: 270 },
-  { field: 'banking', headerName: 'Banking', width: 110 },
-  { field: 'bonus', headerName: 'Bonus', width: 100 },
-  { field: 'status', headerName: 'Status', width: 100 },
-  { field: 'available_bike_stands', headerName: 'Available Bike Stands', width: 100 },
-  { field: 'available_bikes', headerName: 'Available Bikes', width: 100 },
-  { field: 'last_update', headerName: 'Last Update', width: 190 },
-  { field: 'bike_stands', headerName: 'Bike Stands', width: 100 },
-  { field: 'contract_name', headerName: 'Contract Name', width: 100 },
-];
+  const columns = [
+    { field: 'id', hide: true },
+    { field: 'number', headerName: 'Number', width: 110, renderCell: (params) => (
+      <div>
+        <Typography><Link color="primary" onClick={() => history.push(routes[0].path.replace(':id',params.id))} >{params.row.number}</Link></Typography>
+      </div>
+    ), },
+    { field: 'name', headerName: 'Name', width: 350 },
+    { field: 'address', headerName: 'Address', width: 350 },
+    { field: 'position', headerName: 'Position', width: 270 },
+    { field: 'banking', headerName: 'Banking', width: 110 },
+    { field: 'bonus', headerName: 'Bonus', width: 100 },
+    { field: 'status', headerName: 'Status', width: 100 },
+    { field: 'available_bike_stands', headerName: 'Available Bike Stands', width: 100 },
+    { field: 'available_bikes', headerName: 'Available Bikes', width: 100 },
+    { field: 'last_update', headerName: 'Last Update', width: 190 },
+    { field: 'bike_stands', headerName: 'Bike Stands', width: 100 },
+    { field: 'contract_name', headerName: 'Contract Name', width: 100 },
+  ];
 
-function createData(id, number, name, address, position, banking, bonus, status, available_bike_stands, available_bikes, last_update, bike_stands, contract_name) {
-  return { id, number, name, address, position, banking, bonus, status, available_bike_stands, available_bikes, last_update, bike_stands, contract_name };
-}
+  function createData(id, number, name, address, position, banking, bonus, status, available_bike_stands, available_bikes, last_update, bike_stands, contract_name) {
+    return { id, number, name, address, position, banking, bonus, status, available_bike_stands, available_bikes, last_update, bike_stands, contract_name };
+  }
 
   data = data.data;
   let rows = [];
