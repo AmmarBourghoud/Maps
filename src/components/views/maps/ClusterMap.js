@@ -15,7 +15,6 @@ function ClusterMap(data) {
       style: 'mapbox://styles/mapbox/light-v10?optimize=true',
       center: [153.011938, -27.493963],
       zoom: 9,
-      maxZoom: 12,
       minZoom: 1,
       tolerance: 3.5,
       buffer: 0,
