@@ -110,6 +110,7 @@ export default function Aside({ setChoice, children }) {
             color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
+            data-testid="icon"
             edge="start"
             className={clsx(classes.menuButton, {
               [classes.hide]: open,
@@ -147,7 +148,7 @@ export default function Aside({ setChoice, children }) {
         * Updates the choice by updating the prop's state using setChoice function *
         * Renders the children component passed by props depending on choice *
       **/}
-      <List> 
+      <List data-testid="list"> 
         <ListItem button onClick={() => setChoice('list')}> 
             <ListItemIcon>
                 <TableChartIcon />      

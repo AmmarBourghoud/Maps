@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Link } from '@material-ui/core';
 import routes from '../../routing/routes'
 import { useHistory } from "react-router-dom";
+import Moment from 'moment';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -58,11 +59,11 @@ export default function ListTable(data) {
   let rows = [];
   if(data.length > 0)
   data.map( (sdata) =>
-    rows.push(createData(sdata.recordid, sdata.fields.number, sdata.fields.name, sdata.fields.address, sdata.fields.position, sdata.fields.banking, sdata.fields.bonus, sdata.fields.status, sdata.fields.available_bike_stands, sdata.fields.available_bikes, sdata.fields.last_update, sdata.fields.bike_stands, sdata.fields.contract_name) ),
+    rows.push(createData(sdata.recordid, sdata.fields.number, sdata.fields.name, sdata.fields.address, sdata.fields.position, sdata.fields.banking, sdata.fields.bonus, sdata.fields.status, sdata.fields.available_bike_stands, sdata.fields.available_bikes, Moment(sdata.fields.last_update).format('DD/MM/YY  HH:mm'), sdata.fields.bike_stands, sdata.fields.contract_name) ),
   )
 
   return (
-    <div style={{ marginTop: '10%', height: 600, width: '100%' }}>
+    <div style={{ marginTop: '10%', height: 600, width: '100%', marginLeft: '3%' }}>
        <DataGrid className={classes.root} rows={rows} columns={columns.map((column) => ({...column, disableClickEventBubbling:true }))} pageSize={15} rowsPerPageOptions={[15, 50, 100]} />
     </div>
   );

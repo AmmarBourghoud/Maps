@@ -4,7 +4,6 @@ import {Alert} from '@material-ui/lab';
 import { makeStyles } from '@material-ui/core/styles';
 import logonamR from '../../assets/img/logo-namR-2021.svg';
 import { LOGIN_MAIL_ADDRESS, LOGIN_PASSWORD } from '../../consts/consts';
-import PropTypes from 'prop-types';
 
 function Copyright() {
   return (
@@ -111,6 +110,7 @@ export default function Login({ setToken }) {
               label="Email Address : admin@admin.com"
               name="email"
               autoComplete="email" 
+              data-testid="mail"
               autoFocus
               value={mail}
               onChange={(e) => setMail(e.target.value)}
@@ -125,6 +125,7 @@ export default function Login({ setToken }) {
               type="password"
               id="password"
               autoComplete="current-password"
+              data-testid="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
@@ -138,6 +139,7 @@ export default function Login({ setToken }) {
               variant="contained"
               color="primary"
               className={classes.submit}
+              data-testid="button"
             >
             Se connecter
            </Button>
@@ -148,8 +150,4 @@ export default function Login({ setToken }) {
       </Box>
     </Container>
   );
-}
-
-Login.propTypes = {
-  setToken: PropTypes.func.isRequired
 }

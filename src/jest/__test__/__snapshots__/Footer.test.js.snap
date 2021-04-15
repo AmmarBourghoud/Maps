@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<footer>
+  <header
+    className="MuiPaper-root MuiAppBar-root MuiAppBar-positionSticky MuiAppBar-colorTransparent makeStyles-footer-3 MuiPaper-elevation4"
+  >
+    <div
+      className="MuiContainer-root MuiContainer-maxWidthMd"
+    >
+      <div
+        className="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
+      >
+        <span
+          className="MuiTypography-root MuiTypography-caption MuiTypography-colorTextSecondary MuiTypography-alignLeft"
+        >
+          <a
+            className="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-colorPrimary"
+            data-testid="link"
+            href="https://github.com/AmmarBourghoud/namR"
+            onBlur={[Function]}
+            onFocus={[Function]}
+            target="_blank"
+          >
+            abourgho
+          </a>
+           
+          2021
+          .
+        </span>
+      </div>
+    </div>
+  </header>
+</footer>
+`;
