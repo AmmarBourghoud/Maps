@@ -1,7 +1,8 @@
 # Web App to visualise bike's data
 
-This project was created with [Create React App](https://github.com/facebook/create-react-app).
-This App uses **React, Material-UI, Redux, TypeScript, Jest** and **React Testing Library**
+This project was created with [Create React App](https://github.com/facebook/create-react-app).<br/>
+This App uses **React, Material-UI, Redux, TypeScript, Jest** and **React Testing Library**.<br/>
+See more details about the [application](https://github.com/AmmarBourghoud/namR/blob/master/src/App.md)
 
 ## Available Scripts
 
